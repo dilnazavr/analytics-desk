@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { casesApi } from '../api/client'
-import { Plus, Search } from 'lucide-react'
+import { Plus, Search, Trash2 } from 'lucide-react'
 
 export default function CasesPage() {
   const handleDeleteCase = async (id: number, title: string, e: React.MouseEvent) => {
@@ -10,7 +10,7 @@ export default function CasesPage() {
     if (!confirm(`Удалить дело «${title}» и все связанные данные? Это нельзя отменить.`)) return
     try {
       await casesApi.delete(id)
-      setItems((prev: any[]) => prev.filter((c) => c.id !== id))
+      setCases((prev) => prev.filter((c) => c.id !== id))
     } catch (err: any) {
       alert(err.response?.data?.error || 'Не удалось удалить')
     }

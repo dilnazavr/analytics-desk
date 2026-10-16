@@ -140,7 +140,7 @@ export default function GraphTab({ caseId }: Props) {
       }),
     ]
 
-    const cy = cytoscape({
+    const cy = (cytoscape as any)({
       container: containerRef.current,
       elements,
       minZoom: 0.15,
@@ -154,9 +154,9 @@ export default function GraphTab({ caseId }: Props) {
             'text-valign': 'bottom',
             'text-halign': 'center',
             'text-margin-y': 8,
-            'font-size': showNamesFull ? 11 : 10,
+            'font-size': (showNamesFull ? 11 : 10) as any,
             'font-weight': 600,
-            'text-max-width': showNamesFull ? 160 : 90,
+            'text-max-width': (showNamesFull ? 160 : 90) as any,
             'text-wrap': 'wrap',
             'text-background-color': '#ffffff',
             'text-background-opacity': 0.85,
@@ -233,7 +233,7 @@ export default function GraphTab({ caseId }: Props) {
           style: { width: 5, 'line-color': '#f59e0b', 'target-arrow-color': '#f59e0b' },
         },
       ],
-      layout: fcose
+      layout: (fcose
         ? {
             name: 'fcose',
             animate: false,
@@ -245,7 +245,7 @@ export default function GraphTab({ caseId }: Props) {
             tilingPaddingVertical: 20,
             tilingPaddingHorizontal: 20,
           }
-        : { name: 'cose', animate: false, nodeRepulsion: 12000 },
+        : { name: 'cose', animate: false, nodeRepulsion: 12000 }) as any,
     })
 
     cy.on('tap', 'node', (evt: any) => {
